@@ -1,0 +1,77 @@
+# VLAN, Router-on-a-Stick & Native VLAN
+
+## Project Overview
+
+This project was created using Cisco Packet Tracer to practice VLAN configuration, inter-VLAN routing using Router-on-a-Stick, and Native VLAN configuration.
+
+## Network Topology
+
+The network contains:
+
+- 2 Switches
+- 1 Router
+- Multiple PCs
+- VLAN 1 - Native VLAN
+- VLAN 2 - HR
+- VLAN 3 - Sales
+
+## VLAN Configuration
+
+### VLAN 2 - HR
+Network: 192.168.2.0/24
+
+### VLAN 3 - Sales
+Network: 192.168.3.0/24
+
+### VLAN 1 - Native VLAN
+Used as the native VLAN for trunk communication.
+
+## Router-on-a-Stick
+
+The router is configured with subinterfaces to provide inter-VLAN routing.
+
+Example:
+
+interface GigabitEthernet0/0.2
+ encapsulation dot1Q 2
+ ip address 192.168.2.1 255.255.255.0
+
+interface GigabitEthernet0/0.3
+ encapsulation dot1Q 3
+ ip address 192.168.3.1 255.255.255.0
+
+## Native VLAN
+
+The native VLAN is configured on the trunk using:
+
+encapsulation dot1Q 1 native
+
+This allows untagged traffic to be associated with VLAN 1.
+
+## Switch Configuration
+
+The links between the router and switches are configured as trunk ports.
+
+Access ports are assigned to their corresponding VLANs.
+
+## Verification
+
+The configuration was tested using:
+
+- show vlan brief
+- show interfaces trunk
+- show ip interface brief
+- show ip route
+- ping between different VLANs
+
+## Skills Practiced
+
+- VLAN Configuration
+- Access Ports
+- Trunk Ports
+- 802.1Q Encapsulation
+- Router-on-a-Stick
+- Inter-VLAN Routing
+- Native VLAN
+- Cisco IOS Configuration
+- Network Troubleshooting
